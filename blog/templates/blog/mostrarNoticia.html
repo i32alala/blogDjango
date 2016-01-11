@@ -1,0 +1,224 @@
+
+
+{% extends 'base.html' %}
+{% block contenido %}
+
+<div class='container' id='container'>
+	<div class='row'>
+		<div class='col-xs-12 col-sm-8 col-md-8 col-lg-8 clearfix  sidebox-start'>
+			<div class='main section' id='main'>
+				<div class='widget Blog' id='Blog1'>
+					<div class='blog-posts hfeed'>
+						<div class="date-outer">
+							<h3 class='date-header'>
+								<span>
+								Saturday, January 18, 2014
+								</span>
+							</h3>
+							<div class="date-posts">
+								
+								
+								<div class='post-outer'>
+									<div class='post hentry' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+										<meta content='http://2.bp.blogspot.com/-0C0TkjuEiSE/UtqnS9734eI/AAAAAAAAACM/ljitUeNXGFg/s1600/2010_Audi_A5_(8T)_3.0_TDI_quattro_Sportback_04.jpg' itemprop='image_url'/>
+										<meta content='4794769759918879191' itemprop='blogId'/>
+										<meta content='2782508294110079373' itemprop='postId'/>
+										<a name='2782508294110079373'></a>
+										
+										{% if noticia.Titulo %}
+										<h1 class='letraTitulo entry-title'>
+										
+										{{noticia.Titulo}}
+										</h1>
+										{% endif %}
+										{% if noticia.SubTitulo %}
+										<div class='subtitulo'>
+											{{noticia.SubTitulo}}
+										</div>
+										{% endif %}
+										<div id='summary2782508294110079373'>
+										{% if noticia.Imagen %}
+											<img border=0 src ="/media/{{noticia.Imagen}}"  height="150" width="250" align="left"/>
+											{% endif %}
+											
+											{% if noticia.Contenido %}
+											<p style="text-align: justify;">{{noticia.Contenido}}</p>
+											{% endif %}
+											<pre></pre>
+											
+											<div class='post-header-label'>
+									<span class='glyphicon glyphicon-calendar'>
+									<span style="color:#666;" aria-hidden="true"></span>
+									{{noticia.Fecha}}
+									</span>
+									<span class='glyphicon glyphicon-user'>
+									<i class='fa fa-tags'></i>
+									<!-- <a href='' rel='tag'> -->
+									
+									
+									{{noticia.Autor}} 
+									
+									{% for i in noticia.Categoria.all %}
+									{{i.Nombre}}
+									
+									{% endfor %}
+									<!-- </a> -->
+									</span>
+								</div>
+			
+			  
+										</div>
+										
+										<div class='sidebox'>
+					<div class='sidebar section' id='sidebar'>
+						<div class='widget Label' id='Label2'>
+							<h2 class='title'>
+								Comentarios
+							</h2>	
+							<div class="well" style="margin-top: -10px;border-radius: 0px;margin-right: -1px;">
+							    <h4>Deja un Comentario:</h4>
+							    <form role="form" action="" method="POST">
+							    {% csrf_token %}
+								<div class="form-group">
+								    <input class="form-control" id="id_nombre" type="text" name="Nombre" placeholder="Nombre" />
+								</div>
+								<div class="form-group">
+								    <input class="form-control" id="id_apellidos" type="text" name="Apellidos" placeholder="Apellidos" />
+								</div>
+								<div class="form-group">
+								    <input class="form-control" id="id_email" type="text" name="Email" placeholder="Email" />
+								</div>
+								<div class="form-group">
+								    <textarea class="form-control" id="id_comentario" name="Comentario" placeholder="Comente" rows="3"></textarea>
+								</div>
+								{% if form.errors %}
+								    {% for field in form %}
+									{% for error in field.errors %}
+									    <div class="alert alert-danger">
+										{{ error|escape }}
+									    </div>
+									{% endfor %}
+								    {% endfor %}
+								    {% for error in form.non_field_errors %}
+									<div class="alert alert-danger">
+									    {{ error|escape }}
+									</div>
+								    {% endfor %}
+								{% endif %}	
+							<button type="submit" class="btn btn-primary">Enviar</button>
+							    </form>
+							</div>			
+							<div class='widget-content list-label-widget-content'>
+								{%if comentarios%}
+								{% for i in comentarios %}
+								<div class="media">
+								    
+								    <div class="media-body">
+									<h4 class="media-heading">
+									    
+									</h4><span class="glyphicon glyphicon-user"></span>
+									{{ i.Nombre }} <p>{{ i.Comentario }}</p>
+								    </div>
+								</div>
+								<hr />
+								{% endfor %}
+								{% endif %}									
+							</div>							
+						</div>						
+					</div>
+				</div>
+										
+										<div class='post-footer'>
+										
+											<div class='post-footer-line post-footer-line-1'>
+												<span class='post-icons'>
+												<span class='item-control blog-admin pid-824983867'>
+												<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+												</a>
+												</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr style="color: #000000;" size="5" />
+								
+								
+							</div>
+						</div>
+					</div>
+					<div class='blog-feeds'>
+						<div class='feed-links'>
+							Subscribe to:
+							<a class='feed-link' href='http://weblogt3.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>
+							Posts
+							(
+							Atom
+							)
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END Loop -->
+		</div>
+		<!-- END Content -->
+		<div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+			<div class='sidebox'>
+				<div class='sidebar section' id='sidebar'>
+					<div class='widget HTML' id='HTML3'>
+						<h1 class='title'>
+						
+							Buscar...
+						</h1>
+						<div class='widget-content'>
+							<form method="get" class="search-form" action="/search" role="search">
+								<div class="form-group">
+									<input type="search" name="q" placeholder="Buscar...&#8230;" class="form-control" />
+								</div>
+							</form>
+						</div>
+						<div class='clear'></div>
+					</div>
+					<div class='widget HTML' id='HTML5'>
+					</div>
+					<div class='widget HTML' id='HTML2'>
+						<h2 class='title'>
+							Categoria
+						</h2>
+						<ul>
+							{% for cat in categoria_index %} 
+							<li><a href="/categoria/{{cat.id}}">{{cat.Nombre}}</a></li>
+							{% endfor %}
+						</ul>
+						<div class='widget-content'>
+							<!--Categorias-->
+						</div>
+						</span>
+					</div>
+					<div class='widget HTML' id='HTML2'>
+						<h2 class='title'>
+							Autor
+						</h2>
+						<ul>
+							{% for aut in autor_index%} 
+							<li><a href="/autor/{{aut.id}}">{{aut.username}}</a></li>
+							{% endfor %}
+						</ul>
+						<div class='widget-content'>
+							
+						</div>
+						</span>
+					</div>
+					</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load staticfiles %}
+
+
+		<html lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+			<head>
+				<meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+				
+				
+					<!-- BOOTSTRAP-->
+				  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ 
+				<!--<meta name="viewport" content="width=device-width, initial-scale=1">
+				  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+				  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+				  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+				  
+			<link href='https://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+				
+				<link href="/static/css/style.css" type='text/css' rel='stylesheet' />
+				
+			<!--Titulo inferior-->	
+			<link href='https://fonts.googleapis.com/css?family=Jura:600' rel='stylesheet' type='text/css'>
+			
+			<!--Titulo Superior-->
+			<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+			
+			<!--Subtitulo-->
+			<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+			
+			<!--Categoria-->
+			
+			<link href='https://fonts.googleapis.com/css?family=Orbitron:700' rel='stylesheet' type='text/css'>
+			
+				<title>
+				</title>
+				<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+				<meta content='blogger' name='generator'/>
+				<link href='http://weblogt3.blogspot.com.es/favicon.ico' rel='icon' type='image/x-icon'/>
+				<link href='http://weblogt3.blogspot.com/' rel='canonical'/>
+				<link rel="alternate" type="application/atom+xml" title="Evid BT - Atom" href="http://weblogt3.blogspot.com/feeds/posts/default" />
+				<link rel="alternate" type="application/rss+xml" title="Evid BT - RSS" href="http://weblogt3.blogspot.com/feeds/posts/default?alt=rss" />
+				<link rel="service.post" type="application/atom+xml" title="Evid BT - Atom" href="https://www.blogger.com/feeds/4794769759918879191/posts/default" />
+				<link rel="openid.server" href="https://www.blogger.com/openid-server.g" />
+				<link rel="openid.delegate" href="http://weblogt3.blogspot.com/" />
+			<link type='text/css' rel='stylesheet' href="/static/css/bootstrap.css" />
+		<link type='text/css' rel='stylesheet' href="/static/css/style.css" />	
+		<link type='text/css' rel='stylesheet' href="/static/css/bootstrap-combined.min.css" />
+		<meta content='blogger' name='generator'/>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>	
+		<script src="/static/js/bootstrap.js"></script>
+		<script src="/static/js/1.js"></script>
+		<script src="/static/js/2.js"></script>				
+		<script src="/static/js/0.js"></script>				
+		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' type='text/javascript'></script>
+	</head>
+	<body>
+	<div class='container' id='header-container'>
+	<div class='navbar navbar-default navbar-static-top main-top-nav' role='banner'>
+	<div class='navbar-header'>
+	<button class='navbar-toggle' data-target='.bs-navbar-collapse2' data-toggle='collapse' type='button'>
+	<span class='sr-only'>
+	Toggle navigation
+	</span>
+	<span class='icon-bar'></span>
+	<span class='icon-bar'></span>
+	<span class='icon-bar'></span>
+	</button>
+	<div class='header section' id='blog-title'><div class='widget Header' id='Header1'>
+	<div id='header-inner'>
+	<div class='titlewrapper'>
+	<h1 class='titulo'>
+	Blog de Jose
+	</h1>
+	</div>
+	<div class='descriptionwrapper'>
+	<p class='description'>
+	<span>
+	</span>
+	</p>
+	</div>
+	</div>
+	</div></div>
+	</div>
+	<nav class='collapse navbar-collapse bs-navbar-collapse2' role='navigation'>
+	<ul class='nav navbar-nav navbar-right'>
+	<li class='open'>
+	<a href='/'>
+	Home 
+	</a>
+	</li>
+		{% if user.is_authenticated %}
+	<li class='dropdown'>
+	<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+	Mi cuenta 
+	<b class='caret'></b>
+	</a>
+	<ul class='dropdown-menu'>
+	
+	<li>
+	<a href='/users/editar_nombre/'>
+	Editar cuenta
+	</a>
+	</li>
+	
+	</ul>
+	</li>
+		{% else %}
+	
+	<li>
+		
+	<a href='/users/login/'>
+	LOGIN
+	</a>
+	
+		
+	</li>
+	
+		{% endif%}
+		
+		{% if user.is_authenticated %}
+	<li class='dropdown'>
+	<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+	Noticias 
+	<b class='caret'></b>
+	</a>
+	<ul class='dropdown-menu'>
+	<li>
+	<a href='/noticia/new/'>
+	Insertar Noticias
+	</a>
+	</li>
+	<li>
+	<a href='/noticia/editar'>
+	Editar/Borrar Noticias
+	</a>
+	</li>
+	</ul>
+	</li>
+	<li class='dropdown'>
+	<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+	Comentarios 
+	<b class='caret'></b>
+	</a>
+	<ul class='dropdown-menu'>
+	<li>
+	<a href='/com/editarCom'>
+	Borrar comentarios
+	</a>
+	</li>
+	</ul>
+	</li>
+	
+	
+		{% endif %}
+	{% if user.is_authenticated %}
+		<li class='dropdown'>
+	<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+	Categorias 
+	<b class='caret'></b>
+	</a>
+	<ul class='dropdown-menu'>
+	<li>
+	<a href='/cate/newCat/'>
+	Insertar Categoria
+	</a>
+	</li>
+	<li>
+	<a href='/cate/editCat'>
+	Editar/Borrar Categoria
+	</a>
+	</li>
+	</ul>
+	</li>
+	
+			{% endif %}
+	{% if user.is_authenticated %}
+	<li>
+	<a href='{% url 'users:logout' %}'>
+	Salir
+	</a>
+	</li>
+		
+	{% endif %}
+	
+	</ul>
+	</nav>
+	</div>
+	</div>
+	<!--end top-page-menu-->
+	<div class='container' id='container'>
+	
+			
+			
+			
+			{% block contentAut %}
+			{% endblock %}
+			
+			{% block insertar%}
+			{% endblock %}
+			
+			{% block contenido %}
+			{% endblock %}
+			
+			{% block editar %}
+			{% endblock %}
+			
+						
+			{% block registro %}
+			{% endblock %}
+			
+		
+			{% block editarNombre %}
+			{% endblock %}
+			
+			{% block formNombre %}
+			{% endblock %}
+			
+		             
+                        {% block EditMostrar %}
+	                {% endblock %}
+	                
+	                {% block insertarCat %}
+	                {% endblock %}
+	                
+	                {% block editarCat %}
+	                {% endblock %}
+	                
+	                {% block editarCom %}
+	                {% endblock %}
+	         
+	         	{% block formCom %}
+			{% endblock %}
+		
+			
+				
+			
+		
+	
+	</div>
+	
+	<!-- END Container -->
+	<div id='footer'>
+	<p class='footer-link'>
+	&#169; 
+	
+	2015. Jose Antonio Albalat Almenara
+	
+	</p>
+	</div>
+	<!-- END Footer -->
+	
+	</body>
+	</html>
+	

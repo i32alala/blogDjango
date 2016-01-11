@@ -1,0 +1,54 @@
+	{% extends 'base.html' %}
+	
+		{% block editar %}
+
+		{% if noticias %}
+<div class='col-xs-24 col-sm-12 col-md-12 col-lg-12'>
+			
+		<br />
+		<table class="table table-bordered">
+			<tr>
+				<th>Titulo</th>	
+				<th>SubTítulo</th>
+				<th>Editar</th>
+				<th>Borrar</th>
+			</tr>
+			{% for i in noticias %}
+			<tr>
+				<th>{{ i.Titulo }}</th>
+				<th>{{ i.SubTitulo }}</th>
+				<th><a href="/noticia/editar/{{ i.id}}"><span class="glyphicon glyphicon-pencil"></span></a></th>
+				<th><a href="/noticia/borrar/{{ i.id}}" onclick="return confirm('¿Estas seguro de querer borrar?')"><span class="glyphicon glyphicon-trash"></span></a></th>
+			</tr>
+			{% endfor %}
+		</table>
+		
+		<ul class="pagination" >
+				{% if noticias.has_previous %}
+				
+			      <li><a href="?page={{ noticias.previous_page_number }}">Anterior</a></li>
+			  {% endif %}
+			  {% for page in noticias.paginator.page_range %}
+			      {% if noticias.number == page %}
+				  <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+			      {% else %}
+				  <li><a href="?page={{ page }}">{{ page }}</a></li>
+			      {% endif %}
+			  {% endfor %}
+			  {% if noticias.has_next %}
+			      <li><a href="?page={{ noticias.next_page_number }}">Siguiente</a></li>
+			  {% endif %}
+			  </ul>
+			  
+		
+	
+					
+</div>
+		{% else %}
+		
+		<h1 style="text-align:center;font-size:90px;font-family: 'Sigmar One', cursive;">No hay noticias para editar</h1>
+		
+		{% endif %}
+			
+
+		 {% endblock editar %}	

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+	
+		{% block editarCom %}
+
+		{% if comentarios %}
+<div class='col-xs-24 col-sm-12 col-md-12 col-lg-12'>
+			
+			<br />
+						
+		<table class="table table-bordered">
+			<tr>
+				<th>Titulo-Noticia</th>	
+				<th>Comentario</th>
+				<!--<th>Editar</th>-->
+				<th>Borrar</th>
+				
+			</tr>
+			{% for i in comentarios %}
+			<tr>
+				<td><a href="/noticia/{{i.Noticia.id}}">{{ i.Noticia }}</a></td>
+				<td>{{ i.Comentario }}</td>
+				<!--<th><a href="/com/editarCom/{{ i.id}}"><span class="glyphicon glyphicon-pencil"></span></a></th>-->
+				<td><a href="/com/borrarCom/{{ i.id}}" onclick="return confirm('¿Estas seguro de querer borrar?')"><span class="glyphicon glyphicon-trash"></span></a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	
+								
+			<ul class="pagination" >
+				{% if comentarios.has_previous %}
+				
+			      <li><a href="?page={{ comentarios.previous_page_number }}">Anterior</a></li>
+			  {% endif %}
+			  {% for page in comentarios.paginator.page_range %}
+			      {% if comentarios.number == page %}
+				  <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+			      {% else %}
+				  <li><a href="?page={{ page }}">{{ page }}</a></li>
+			      {% endif %}
+			  {% endfor %}
+			  {% if comentarios.has_next %}
+			      <li><a href="?page={{ comentarios.next_page_number }}">Siguiente</a></li>
+			  {% endif %}
+			  </ul>
+					
+</div>
+			
+			{% else %}
+			
+				<h1 style="text-align:center;font-size:90px;font-family: 'Sigmar One', cursive;">No hay comentarios para borrar</h1>
+		
+		{% endif %}
+
+		 {% endblock %}	

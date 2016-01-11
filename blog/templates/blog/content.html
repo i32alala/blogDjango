@@ -1,0 +1,196 @@
+
+
+{% extends 'base.html' %}
+{% block contenido %}
+
+<div class='container' id='container'>
+	<div class='row'>
+		<div class='col-xs-12 col-sm-8 col-md-8 col-lg-8 clearfix  sidebox-start'>
+			<div class='main section' id='main'>
+				<div class='widget Blog' id='Blog1'>
+					<div class='blog-posts hfeed'>
+						<div class="date-outer">
+							<h3 class='date-header'>
+								<span>
+								Saturday, January 18, 2014
+								</span>
+							</h3>
+							<div class="date-posts">
+								{% if noticia_index %}
+								{% for noticia in noticia_index %} 
+								{% if noticia.Estado == '1' %}
+								<div class='post-outer'>
+									<div class='post hentry' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+										<meta content='http://2.bp.blogspot.com/-0C0TkjuEiSE/UtqnS9734eI/AAAAAAAAACM/ljitUeNXGFg/s1600/2010_Audi_A5_(8T)_3.0_TDI_quattro_Sportback_04.jpg' itemprop='image_url'/>
+										<meta content='4794769759918879191' itemprop='blogId'/>
+										<meta content='2782508294110079373' itemprop='postId'/>
+										<a name='2782508294110079373'></a>
+										{% if noticia.Titulo %}
+										<h1 class='letraTitulo entry-title'>
+
+											<a href='/noticia/{{ noticia.id }}'>{{noticia.Titulo}}</a>
+										</h1>
+										{% endif %}
+										<div class='subtitulo'>
+											{{noticia.SubTitulo}}
+										</div>
+										
+										<div id='summary2782508294110079373'>
+										{% if noticia.Imagen %}
+											<img border=0 src ="/media/{{noticia.Imagen}}"  height="150" width="250" align="left"/>
+											{% endif %}
+											{% if noticia.Contenido %}
+											<p style="text-align: justify;">  {{ noticia.Contenido|safe|truncatewords:"50" }}</p>
+											{% endif %}
+											<pre></pre>
+											
+										</div>
+										<div class='rmlink' style="margin-top:-30px;">
+											<a class='btn btn-primary btn-lg' href='/noticia/{{ noticia.id }}'>
+											Leer más
+											</a>
+										
+										</div>
+									<div class='post-header-label'>
+									<span class='glyphicon glyphicon-calendar'>
+									<span style="color:#666;" aria-hidden="true"></span>
+									{{noticia.Fecha}} 
+									</span>
+									<span class='glyphicon glyphicon-user'>
+									<i class='fa fa-tags'></i>
+									<!-- <a href='' rel='tag'> -->
+									
+									
+									{{noticia.Autor}} 
+									
+																
+									{% for i in noticia.Categoria.all %}
+									{{i.Nombre}}
+									
+									{% endfor %}
+									
+									<span class='glyphicon glyphicon-tag'>
+									
+									{{noticia.Etiquetas}}</span>
+									<!-- </a> -->
+									</span>
+									</div>
+									<ul class="pagination" style="margin-top:0px;margin-bottom:10px;">
+			  
+										<div class='post-footer'>
+											<div class='post-footer-line post-footer-line-1'>
+												<span class='post-icons'>
+												<span class='item-control blog-admin pid-824983867'>
+												<img alt='' class='icon-action' height='18' src='http://img2.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+												</a>
+												</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr style="color: #000000;" size="5" />
+								{% endif %}
+								{% endfor %} 
+							{% else %}
+							
+							<h1 style="text-align:center;font-size:90px;font-family: 'Sigmar One', cursive;">Esto está vacio!</h1>
+							{% endif %}
+							
+							
+								
+			<ul class="pagination" >
+				{% if noticia_index.has_previous %}
+				
+			      <li><a href="?{{query.urlencode}}&amp;page={{ noticia_index.previous_page_number }}">Anterior</a></li>
+			  {% endif %}
+			  {% for page in noticia_index.paginator.page_range %}
+			      {% if noticia_index.number == page %}
+				  <li class="active"><a href="?{{query.urlencode}}&amp;page={{ page }}">{{ page }}</a></li>
+			      {% else %}
+				  <li><a href="?{{query.urlencode}}&amp;page={{ page }}">{{ page }}</a></li>
+			      {% endif %}
+			  {% endfor %}
+			  {% if noticia_index.has_next %}
+			      <li><a href="?{{query.urlencode}}&amp;page={{ noticia_index.next_page_number }}">Siguiente</a></li>
+			  {% endif %}
+			  </ul>
+			 
+							</div>
+						</div>
+					</div>
+					<div class='blog-feeds'>
+						<div class='feed-links'>
+							Subscribe to:
+							<a class='feed-link' href='http://weblogt3.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>
+							Posts
+							(
+							Atom
+							)
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END Loop -->
+		</div>
+		<!-- END Content -->
+		<div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+			<div class='sidebox'>
+				<div class='sidebar section' id='sidebar'>
+					<div class='widget HTML' id='HTML3'>
+						<h1 class='title'>
+						
+							Buscar...
+						</h1>
+						<div class='widget-content'>
+							<form method='GET' class="search-form" action="/search/" role="search">
+								<div class="form-group">
+									<input type="search" name="q" placeholder="Buscar...&#8230;" class="form-control" />
+								</div>
+							</form>
+						</div>
+						<div class='clear'></div>
+					</div>
+					<div class='widget HTML' id='HTML5'>
+					</div>
+					<div class='widget HTML' id='HTML2'>
+						<h2 class='title'>
+							Categoria
+						</h2>
+						<ul>
+							{% for cat in categoria_index %} 
+							<li><a href="/categoria/{{cat.id}}">{{cat.Nombre}}</a></li>
+							{% endfor %}
+						</ul>
+						<div class='widget-content'>
+							<!--Categorias-->
+						</div>
+						</span>
+					</div>
+					<div class='widget HTML' id='HTML2'>
+						<h2 class='title'>
+							Autor
+						</h2>
+						<ul>
+							{% for aut in autor_index%} 
+							<li><a href="/autor/{{aut.id}}">{{aut.username}}</a></li>
+							{% endfor %}
+						</ul>
+						<div class='widget-content'>
+							
+						</div>
+						</span>
+					</div>
+					</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+

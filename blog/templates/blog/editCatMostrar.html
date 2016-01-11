@@ -1,0 +1,52 @@
+	{% extends 'base.html' %}
+	
+		{% block editarCat %}
+
+		{% if categorias %}
+<div class='col-xs-24 col-sm-12 col-md-12 col-lg-12'>
+			
+			<br />
+						
+		<table class="table table-bordered">
+			<tr>
+				<th>Nombre</th>	
+				<th>Editar</th>
+				<th>Borrar</th>
+				
+			</tr>
+			{% for i in categorias %}
+			<tr>
+				<th>{{ i.Nombre }}</th>
+				<th><a href="/cate/editCat/{{ i.id}}"><span class="glyphicon glyphicon-pencil"></span></a></th>
+				<th><a href="/cate/borrarCat/{{ i.id}}" onclick="return confirm('¿Estas seguro de querer borrar?')"><span class="glyphicon glyphicon-trash"></span></a></th>
+			</tr>
+			{% endfor %}
+		</table>
+	
+								
+			<ul class="pagination" >
+				{% if categorias.has_previous %}
+				
+			      <li><a href="?page={{ categorias.previous_page_number }}">Anterior</a></li>
+			  {% endif %}
+			  {% for page in categorias.paginator.page_range %}
+			      {% if categorias.number == page %}
+				  <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+			      {% else %}
+				  <li><a href="?page={{ page }}">{{ page }}</a></li>
+			      {% endif %}
+			  {% endfor %}
+			  {% if categorias.has_next %}
+			      <li><a href="?page={{ categorias.next_page_number }}">Siguiente</a></li>
+			  {% endif %}
+			  </ul>
+					
+</div>
+			{% else %}
+			
+			<h1 style="text-align:center;font-size:90px;font-family: 'Sigmar One', cursive;">No hay categorias</h1>
+		
+		{% endif %}
+			
+
+		 {% endblock %}	
